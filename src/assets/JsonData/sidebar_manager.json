@@ -1,0 +1,73 @@
+[
+  {
+    "display_name": "Thông báo",
+    "route": "/manager",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Trường học",
+    "route": "/manager/school",
+    "icon": "bx bx-cart"
+  },
+  {
+    "display_name": "Khối học",
+    "route": "/manager/grade",
+    "icon": "bx bx-cart"
+  },
+  {
+    "display_name": "Năm học",
+    "route": "/manager/schoolYear",
+    "icon": "bx bx-cart"
+  },
+  {
+    "display_name": "Lớp học",
+    "route": "/manager/class",
+    "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Giáo viên",
+    "route": "/manager/teacher",
+    "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Học sinh",
+    "route": "/manager/student",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Môn học",
+    "route": "/manager/subject",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Khóa học",
+    "route": "/manager/course",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Nhập điểm",
+    "route": "/manager/mark",
+    "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Sổ liên lạc",
+    "route": "/manager/contactBook",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Học phí",
+    "route": "/manager/fee",
+    "icon": "bx bx-user-pin"
+  },
+
+  {
+    "display_name": "Phụ huynh",
+    "route": "/manager/family",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Ngoại khóa",
+    "route": "/manager/extra",
+    "icon": "bx bx-user-pin"
+  }
+]

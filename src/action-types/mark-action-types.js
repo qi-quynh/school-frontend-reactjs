@@ -1,0 +1,12 @@
+export const FETCH_ALL_MARK = "FETCH_ALL_MARK";
+export const FETCH_ALL_MARK_FAIL = "FETCH_ALL_MARK_FAIL";
+export const GET_MARK_BY_ID = "GET_MARK_BY_ID";
+export const GET_MARK_BY_ID_FAIL = "GET_MARK_BY_ID_FAIL";
+export const RESET_MARK = "RESET_MARK";
+export const RESET_MARK_FAIL = "RESET_MARK_FAIL";
+export const ADD_MARK = "ADD_MARK";
+export const ADD_MARK_FAIL = "ADD_MARK_FAIL";
+export const UPDATE_MARK = "UPDATE_MARK";
+export const UPDATE_MARK_FAIL = "UPDATE_MARK_FAIL";
+export const DELETE_MARK = "DELETE_MARK";
+export const DELETE_MARK_FAIL = "DELETE_MARK_FAIL";

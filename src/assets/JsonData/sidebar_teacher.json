@@ -1,0 +1,30 @@
+[
+  {
+    "display_name": "Thông báo",
+    "route": "/teacher",
+    "icon": "bx bx-category-alt"
+  },
+
+  {
+    "display_name": "Lớp học",
+    "route": "/teacher/class",
+    "icon": "bx bx-package"
+  },
+
+  {
+    "display_name": "Học sinh",
+    "route": "/teacher/student",
+    "icon": "bx bx-user-pin"
+  },
+
+  {
+    "display_name": "Nhập điểm",
+    "route": "/teacher/mark",
+    "icon": "bx bx-package"
+  },
+  {
+    "display_name": "Sổ liên lạc",
+    "route": "/teacher/contactBook",
+    "icon": "bx bx-user-pin"
+  }
+]

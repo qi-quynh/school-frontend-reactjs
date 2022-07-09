@@ -1,0 +1,12 @@
+export const FETCH_ALL_YEAR = "FETCH_ALL_YEAR";
+export const FETCH_ALL_YEAR_FAIL = "FETCH_ALL_YEAR_FAIL";
+export const GET_YEAR_BY_ID = "GET_YEAR_BY_ID";
+export const GET_YEAR_BY_ID_FAIL = "GET_YEAR_BY_ID_FAIL";
+export const RESET_YEAR = "RESET_YEAR";
+export const RESET_YEAR_FAIL = "RESET_YEAR_FAIL";
+export const ADD_YEAR = "ADD_YEAR";
+export const ADD_YEAR_FAIL = "ADD_YEAR_FAIL";
+export const UPDATE_YEAR = "UPDATE_YEAR";
+export const UPDATE_YEAR_FAIL = "UPDATE_YEAR_FAIL";
+export const DELETE_YEAR = "DELETE_YEAR";
+export const DELETE_YEAR_FAIL = "DELETE_YEAR_FAIL";

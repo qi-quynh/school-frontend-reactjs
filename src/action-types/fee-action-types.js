@@ -1,0 +1,12 @@
+export const FETCH_ALL_FEE = "FETCH_ALL_FEE";
+export const FETCH_ALL_FEE_FAIL = "FETCH_ALL_FEE_FAIL";
+export const GET_FEE_BY_ID = "GET_FEE_BY_ID";
+export const GET_FEE_BY_ID_FAIL = "GET_FEE_BY_ID_FAIL";
+export const RESET_FEE = "RESET_FEE";
+export const RESET_FEE_FAIL = "RESET_FEE_FAIL";
+export const ADD_FEE = "ADD_FEE";
+export const ADD_FEE_FAIL = "ADD_FEE_FAIL";
+export const UPDATE_FEE = "UPDATE_FEE";
+export const UPDATE_FEE_FAIL = "UPDATE_FEE_FAIL";
+export const DELETE_FEE = "DELETE_FEE";
+export const DELETE_FEE_FAIL = "DELETE_FEE_FAIL";
