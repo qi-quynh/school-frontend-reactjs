@@ -13,7 +13,7 @@ const GradeManager = () => {
   const dispatch = useDispatch();
   const listGrade = useSelector((state) => state.grade.listGrade);
   console.log(listGrade);
-  const itemsPerPage = 15;
+  const itemsPerPage = 10;
   const header = ["STT", "ID", "Tên", "Trường", ""];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
@@ -68,7 +68,7 @@ const GradeManager = () => {
   return (
     <Fragment>
       <Card className="card-box mb-4">
-        <div className="card-header">
+        <div className="card-header ">
           <div className="card-header--title">
             <h4>Quản lý khối</h4>
           </div>

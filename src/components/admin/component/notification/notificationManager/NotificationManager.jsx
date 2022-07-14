@@ -161,7 +161,7 @@ const NotificationManager = () => {
               <h4>Quản lý thông báo</h4>
             </div> */}
           <Box className="card-header--actions">
-            <Link to="notification/add">
+            <Link to="/admin/notification/add">
               <Button className="m-2" variant="contained" color="primary">
                 Thêm mới
               </Button>
@@ -232,10 +232,7 @@ const NotificationManager = () => {
             <div className="table-responsive">Chưa có thông báo</div>
           )}
         </CardContent>
-        <CardContent className="p-0">
-          <h6>Nội dung: </h6>
-          <div>{content}</div>
-        </CardContent>
+       
       </Card>
       {/* <NotifiDetail content={content} /> */}
     </Fragment>

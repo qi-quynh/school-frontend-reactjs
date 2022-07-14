@@ -41,10 +41,7 @@ const NotificationForm = () => {
       id: 3,
       title: "Quản lý trường",
     },
-    {
-      id: 4,
-      title: "Toàn bộ",
-    },
+
     {
       id: 5,
       title: "Giáo viên và học sinh",
@@ -113,6 +110,7 @@ const NotificationForm = () => {
     if (id === -1) {
       dispatch(addNotification("/notification/manager", params, history));
       console.log("add");
+      console.log(params);
     } else {
       params.id = Number(id);
       dispatch(updateNotification("/notification/manager", params, history));
@@ -141,21 +139,20 @@ const NotificationForm = () => {
           <h4 className="my-4 font-weight-bold text-info">{title}</h4>
           <Form>
             <div className="row">
-              {id === -1 ? (
-                <div></div>
-              ) : (
-                <TextField
-                  label="Id"
-                  name="idNotification"
-                  type="text"
-                  readonly=""
-                />
-              )}
               <TextField
                 label="Tiêu đề*"
                 name="titleNotification"
                 type="text"
               />
+              <SelectField label="Áp dụng" name="object" type="number">
+                {listObject == null
+                  ? null
+                  : listObject.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.title}
+                      </option>
+                    ))}
+              </SelectField>
             </div>
             <div className="row">
               <SelectField
@@ -178,25 +175,7 @@ const NotificationForm = () => {
                 ))}
               </SelectField>
             </div>
-            <div className="row">
-              <SelectField label="Áp dụng" name="object" type="number">
-                {listObject == null
-                  ? null
-                  : listObject.map((item) => (
-                      <option key={item.id} value={item.id}>
-                        {item.title}
-                      </option>
-                    ))}
-              </SelectField>
-
-              <SelectField label="Trạng thái" name="StatusNotification">
-                {listStatus.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </SelectField>
-            </div>
+            <div className="row"></div>
             <div className="row">
               <Multiline12Field
                 label="Mô tả"

@@ -17,16 +17,36 @@ import {
   updateCourse,
   resetCourse,
 } from "./../../../../../services/course-service";
-
+import { getAllSubject } from "./../../../../../services/subject-service";
+import { SelectField } from "../../../../formik/SelectField";
+import { getAllTeacher } from "../../../../../services/teacher-service";
+import { getAllYear } from "../../../../../services/year-service";
+import { getAllClass } from "../../../../../services/class-service";
+import { SelectField3 } from "./../../../../formik/SelectField3";
+import { TextField3 } from "./../../../../formik/TextField3";
+import { SelectField4 } from "../../../../formik/SelectField4";
+import { SelectField8 } from "../../../../formik/SelectField8";
 const CourseForm = () => {
   let { id } = useParams();
   console.log(id);
 
   if (id == null) id = -1;
-  const [title, setTitle] = useState("Thêm môn học");
+  const [title, setTitle] = useState("Thêm khóa học mới");
   const history = useHistory();
   const dispatch = useDispatch();
   const course = useSelector((state) => state.course.course);
+  console.log(course);
+  const listTeacher = useSelector((state) => state.teacher.listTeacher);
+  const listSubject = useSelector((state) => state.subject.listSubject);
+  const listYear = useSelector((state) => state.year.listYear);
+  const listClass = useSelector((state) => state.class.listClass);
+
+  useEffect(() => {
+    dispatch(getAllTeacher("/teacher/admin"));
+    dispatch(getAllYear("/year"));
+    dispatch(getAllSubject("/subject"));
+    dispatch(getAllClass("/class/admin"));
+  }, [dispatch]);
   const error = useSelector((state) => state.course.error);
   console.log(course);
   const initialValues = {
@@ -34,14 +54,24 @@ const CourseForm = () => {
     name: "",
     classHour: "",
   };
-
+  const listSemester = [
+    {
+      name: "HK I",
+    },
+    {
+      name: "HK II",
+    },
+  ];
   useEffect(() => {
-    const loadSchoolEdit = async () => {
-      await dispatch(resetCourse());
+    const loadSchoolEdit = () => {
+      dispatch(resetCourse());
+      dispatch(getAllSubject());
       if (id !== -1) {
-        await dispatch(getCourseById(`/cource/admin/${id}`));
-
-        setTitle("Thông tin khóa học ");
+        dispatch(getCourseById(`/cource/admin/${id}`));
+        if (course != null) setTitle("Thông tin khóa học" + course.nameCources);
+        else {
+          setTitle("Thông tin khóa học");
+        }
       }
     };
     loadSchoolEdit();
@@ -56,30 +86,27 @@ const CourseForm = () => {
 
   const handleSubmit = (values) => {
     var params = {};
-    params.name = values.name;
-    params.classHour = values.classHour;
+    console.log(values);
+    params.teacherId =
+      values.teacherId ?? (listTeacher != null ? listTeacher[0].id : null);
+    params.classId =
+      values.classId ?? (listClass != null ? listClass[0].id : null);
+    params.yearId = values.yearId ?? (listYear != null ? listYear[0].id : null);
+    params.subjectId = values.subjectId;
+    params.semester = values.semester;
 
     console.log(values);
     if (id === -1) {
       params.id = values.id;
-      dispatch(addCourse("/cource/admin", params));
+      dispatch(addCourse("/cource/admin", params, history));
       console.log("add");
     } else {
-      params.id = id;
       console.log(params);
-      dispatch(updateCourse("/cource/admin", params));
+      dispatch(updateCourse("/cource/admin", params, history));
       console.log("update");
     }
-
-    handleBack();
   };
-  const validate = Yup.object({
-    name: Yup.string()
-      .required("Vui lòng nhập tên môn học")
-      .max(50, "Tên môn học nhập tối đa 50 kí tự")
-      .matches(/[^!@#$%^&()-=+{};:,<.>]/, "Tên không chứa kí tự đặc biệt"),
-    classHour: Yup.number().min(0, "Thời lượng không nhỏ hơn 0"),
-  });
+  const validate = Yup.object({});
 
   return (
     <div>
@@ -98,19 +125,58 @@ const CourseForm = () => {
             </div>
           ) : null}
           <Form>
+            <div className="row"></div>
+
             <div className="row">
-              {id === -1 ? (
-                // <TextField label="Id" name="id" type="text" />
-                <div></div>
-              ) : (
-                <TextField label="Id" name="id" type="text" readonly="" />
-              )}
-              <TextField label="Môn học*" name="name" type="text" />
+              <SelectField4 label="Môn học" name="subjectId">
+                {listSubject != null
+                  ? listSubject.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))
+                  : null}
+              </SelectField4>
+
+              <SelectField4 label="Năm học" name="yearId">
+                {listYear != null
+                  ? listYear.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))
+                  : null}
+              </SelectField4>
+              <SelectField4 label="Học kỳ" name="semester">
+                {listSemester.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name}
+                  </option>
+                ))}
+              </SelectField4>
             </div>
 
             <div className="row">
-              <TextField label="Thời gian" name="classHour" type="number" />
+              <SelectField4 label="Lớp học" name="classId">
+                {listClass != null
+                  ? listClass.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))
+                  : null}
+              </SelectField4>
+              <SelectField8 label="Giáo viên" name="teacherId">
+                {listTeacher != null
+                  ? listTeacher.map((item) => (
+                      <option key={item.id} value={item.id}>
+                        {item.name} - {item.id}
+                      </option>
+                    ))
+                  : null}
+              </SelectField8>
             </div>
+            <div className="row"></div>
 
             <div className="row ">
               <div className="col-md-6">

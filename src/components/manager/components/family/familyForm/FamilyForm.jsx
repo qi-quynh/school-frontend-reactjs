@@ -23,18 +23,15 @@ const FamilyForm = () => {
   const error = useSelector((state) => state.family.error);
   console.log(family);
   const initialValues = {
-    id: "",
+    cccd: "",
     name: "",
-    type: "",
-    address: "",
-    description: "",
   };
 
   useEffect(() => {
-    const loadFamilyEdit = async () => {
-      await dispatch(resetFamily());
+    const loadFamilyEdit = () => {
+      dispatch(resetFamily());
       if (id !== -1) {
-        await dispatch(getFamilyById(id));
+        dispatch(getFamilyById(`/family/manager/${id}`));
 
         setTitle("Thông tin phụ huynh " + id);
       }
@@ -52,18 +49,18 @@ const FamilyForm = () => {
   const handleSubmit = (values) => {
     var params = {};
     params.name = values.name;
-    params.relationShip = values.relationShip;
+    params.phone = values.phone;
 
     console.log(values);
     console.log(id);
     if (id === -1) {
       params.cmnd = values.cmnd;
-      dispatch(addFamily(params, history));
+      dispatch(addFamily("/family/manager", params, history));
       console.log("add");
     } else {
       params.cmnd = id;
       console.log(params);
-      dispatch(updateFamily(params, history));
+      dispatch(updateFamily("/family/manager", params, history));
       console.log("update");
     }
 
@@ -71,7 +68,7 @@ const FamilyForm = () => {
   };
   const validate = Yup.object({
     cmnd: Yup.string()
-      .required("Vui lòng nhập số CMND/CCCDW")
+      .required("Vui lòng nhập số Căn cước công dân")
       .min(9, "Vui lòng nhập tối thiểu 9 kí tự")
       .max(12, "Vui lòng nhập tối đa 12 kí tự")
       .matches(/[0-9]/, "Vui lòng nhập số CMND/CCCD"),
@@ -79,9 +76,12 @@ const FamilyForm = () => {
       .required("Vui lòng nhập tên phụ huynh")
       .max(200, "Vui lòng nhập tối đa 50 kí tự")
       .matches(/[a-zA-Z0-9]/, "Vui lòng không nhập kí tự đặc biệt"),
-    relationShip: Yup.string()
-      .max(200, "Vui lòng nhập tối đa 200 kí tự")
-      .matches(/[a-zA-Z0-9]/, "Vui lòng không nhập kí tự đặc biệt"),
+    phone: Yup.string()
+      .required("Vui lòng nhập số điện thoại")
+      .min(9, "Vui lòng nhập tối thiểu 9 số")
+      .max(12, "Vui lòng nhập tối đa 12 số")
+      .matches(/[0-9]/, "Vui lòng nhập chỉ nhập số"),
+    email: Yup.string(),
   });
 
   return (
@@ -114,7 +114,8 @@ const FamilyForm = () => {
               <TextField label="Họ tên*" name="name" type="text" />
             </div>
             <div className="row">
-              <TextField label="Ghi chú" name="relationship" type="text" />
+              <TextField label="Số điện thoại*" name="phone" type="text" />
+              <TextField label="Email*" name="email" type="email" />
             </div>
 
             <div className="row text-center ">

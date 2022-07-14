@@ -94,6 +94,7 @@ const FeeForm = () => {
       values.schoolYear !== "" ? Number(values.schoolYear) : 1;
     dispatch(addFee("/fee/admin", params, history));
     console.log("add");
+    console.log(params);
 
     //handleBack();
   };

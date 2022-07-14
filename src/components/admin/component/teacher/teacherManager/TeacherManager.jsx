@@ -1,11 +1,18 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Box, Card, CardContent, Button, TextField } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  TextField,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import { Route } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllTeacher,
   deleteTeacher,
-  getTeacherBySearch,
 } from "../../../../../services/teacher-service";
 import Table from "../../../../table/Table";
 import { Link } from "react-router-dom";
@@ -16,6 +23,9 @@ const TeacherManager = () => {
   const listTeacher = useSelector((state) => state.teacher.listTeacher);
   console.log(listTeacher);
   const itemsPerPage = 10;
+  const [isId, setIsId] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [title, setTitle] = React.useState("Tìm kiếm");
   const header = ["STT", "Id", "Tên", "Email", "CMND", ""];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
@@ -61,7 +71,30 @@ const TeacherManager = () => {
   const onClickSignIn = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
-    dispatch(getTeacherBySearch(search));
+    if (isId) dispatch(getAllTeacher(`/teacher/admin?teacherIdFind=${search}`));
+    else dispatch(getAllTeacher(`/teacher/admin?teacherNameFind=${search}`));
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(anchorEl);
+  };
+
+  const onClickID = (event) => {
+    event.preventDefault();
+    dispatch(getAllTeacher(`/teacher/admin?teacherIdFind=${search}`));
+    setIsId(true);
+    setTitle("Tìm theo ID");
+    handleClose();
+  };
+  const onClickName = (event) => {
+    event.preventDefault();
+    setTitle("Tìm theo tên");
+    setIsId(false);
+    dispatch(getAllTeacher(`/teacher/admin?teacherNameFind=${search}`));
+    handleClose();
   };
   return (
     <Fragment>
@@ -77,24 +110,38 @@ const TeacherManager = () => {
                   Thêm mới
                 </Button>
               </Link>
+              <Button
+                aria-controls="simple-menu"
+                color="success"
+                aria-haspopup="true"
+                className="mt-2 mr-0"
+                onClick={handleClick}
+              >
+                {title}
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={onClickID}>Tìm kiếm theo ID</MenuItem>
+                <MenuItem onClick={onClickName}>Tìm kiếm theo tên</MenuItem>
+              </Menu>
               <form
                 onSubmit={onClickSignIn}
                 className="d-none d-sm-inline-block form-inline  ml-14 mb-10 "
               >
-                <div className="p-3">
+                <div className="pr-3 pt-0">
                   <TextField
-                    className="m-2"
+                    className="ml-2"
                     type="text"
                     id="search-id"
                     placeholder="Tìm kiếm"
                     name="search"
                     onChange={(event) => onClickSignIn(event)}
                   />
-                  {/* <div className="">
-                <button className="btn btn-primary" type="submit">
-                  <i className="fas fa-search fa-sm"></i>
-                </button>
-              </div> */}
                 </div>
               </form>
             </div>

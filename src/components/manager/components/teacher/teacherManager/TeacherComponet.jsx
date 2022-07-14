@@ -31,7 +31,7 @@ const TeacherComponent = ({
     <>
       {
         <>
-          <table className="table table-hover">
+          <table className="table table-striped table-hover text-nowrap mb-0">
             <thead>
               <tr>{tableHead.map((item, index) => renderHead(item, index))}</tr>
             </thead>
@@ -67,12 +67,15 @@ const TeacherComponent = ({
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <br />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

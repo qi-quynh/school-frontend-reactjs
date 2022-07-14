@@ -90,7 +90,8 @@ const ExtraForm = () => {
   const validate = Yup.object({
     description: Yup.string().max(2000, "Mô tả quá dài"),
   });
-
+  console.log("Danh dách trường");
+  console.log(listSchool);
   return (
     <div>
       <Formik

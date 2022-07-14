@@ -1,7 +1,12 @@
 [
   {
-    "display_name": "Thông báo",
+    "display_name": "Thông báo đến",
     "route": "/teacher",
+    "icon": "bx bx-category-alt"
+  },
+  {
+    "display_name": "Thông báo đã gửi",
+    "route": "/teacher/send",
     "icon": "bx bx-category-alt"
   },
 

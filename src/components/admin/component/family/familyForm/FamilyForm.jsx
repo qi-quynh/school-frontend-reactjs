@@ -31,12 +31,12 @@ const FamilyForm = () => {
   };
 
   useEffect(() => {
-    const loadFamilyEdit = async () => {
-      await dispatch(resetFamily());
+    const loadFamilyEdit =  () => {
+      dispatch(resetFamily());
       if (id !== -1) {
-        await dispatch(getFamilyById(id));
+        dispatch(getFamilyById(id));
 
-        setTitle("Thông tin phụ huynh " + id);
+        setTitle("Thông tin phụ huynh - Số Căn Cước Công Dân" + id);
       }
     };
     loadFamilyEdit();

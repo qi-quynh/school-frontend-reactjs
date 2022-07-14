@@ -72,7 +72,7 @@ const ClassManager = () => {
         {/* <Link to={"class/" + item.id}>
           <button className="btn-a btn btn-warning mr-10">Sửa</button>
         </Link> */}
-        <Link to={"/teacher/mark-class/" + item.classId}>
+        <Link to={"/teacher/mark-class/" + item.courceId}>
           <Button className="m-2 text-info" variant="outlined" color="default">
             Nhập Điểm
           </Button>

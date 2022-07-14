@@ -64,15 +64,6 @@ const ContactBookComponent = ({
                     <td>{item.yearName}</td>
                     <td>{item.mark}</td>
                     <td>
-                      <Link to={"/admin/mark/add-by-contact-book/" + item.id}>
-                        <Button
-                          className="m-2 text-warning"
-                          variant="outlined"
-                          color="default"
-                        >
-                          Nhập điểm
-                        </Button>
-                      </Link>
                       <Link to={"list-mark/" + item.id}>
                         <Button
                           variant="outlined"
@@ -88,12 +79,14 @@ const ContactBookComponent = ({
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

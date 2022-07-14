@@ -9,16 +9,54 @@
   box-shadow: var(--box-shadow);
 }
 
-.sidebar-student {
+.sidebar-family {
   min-width: var(--sidebar-width);
-  height: 100vh;
+  height: 60vh;
   position: fixed;
   left: 0;
   top: 0;
   color: #e3d2df;
-  background-color: #27ab8a;
+  background-color: #274bab;
   box-shadow: var(--box-shadow);
 }
+
+.sidebar-family-header {
+  min-width: var(--sidebar-width);
+  height: 40vh;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding-top: 20px;
+  
+  color: #e3d2df;
+  background-color: #ffffff;
+  box-shadow: var(--box-shadow);
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.sidebar__school {
+  height: 120px;
+  display: flex;
+  align-items: bottom;
+  padding: 1em 1em;
+  justify-content: center;
+}
+.sidebar__school > img {
+  border-radius: 30%;
+  height: 150px;
+  
+}
+
 
 .sidebar__logo {
   height: 150px;
@@ -26,6 +64,7 @@
   align-items: center;
   justify-content: center;
 }
+
 
 .sidebar__logo > img {
   border-radius: 30%;
@@ -37,7 +76,7 @@
 }
 
 .sidebar__item-inner {
-  padding: 7px 20px;
+  padding: 6px 20px;
   display: flex;
   align-items: center;
   font-weight: 600;

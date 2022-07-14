@@ -10,20 +10,24 @@ import {
 import Table from "../../../../table/Table";
 import { Link } from "react-router-dom";
 import { updateNotification } from "./../../../../../services/notification-service";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import NotificationComponent from "./NotificationComponent";
 
 const NotificationManager = () => {
   const dispatch = useDispatch();
   const listNotification = useSelector(
     (state) => state.notification.listNotification
   );
+  const itemsPerPage = 10;
   console.log(listNotification);
-  const notificationHeader = [
+  const header = [
     "STT",
-    "Id",
+
     "Tiêu đề",
     "Phạm vi",
     "Đối tượng",
     "Trạng thái",
+    "Ngày tạo",
     "Ngoại khóa",
     "",
   ];
@@ -72,9 +76,9 @@ const NotificationManager = () => {
       </td>
       <td>
         {item.idExtracurricularActivities !== null ? (
-          <Link to={"/mânextra/" + item.idExtracurricularActivities}>
+          <Link to={"/manager/extra/" + item.idExtracurricularActivities}>
             <Button
-              className="m-2 text-info"
+              className="m-2 text-info "
               variant="outlined"
               color="default"
             >
@@ -142,19 +146,27 @@ const NotificationManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            <Table
-              headData={notificationHeader}
-              renderHead={(item, index) => renderHead(item, index)}
-              bodyData={listNotification}
-              renderBody={(item, index) => renderBody(item, index)}
-            />
+            {listNotification != null ? (
+              <Route
+                exact
+                component={() => (
+                  <NotificationComponent
+                    data={listNotification}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={header}
+                  />
+                )}
+              />
+            ) : null}
+
             {/* </div> */}
           </div>
         </CardContent>
-        <CardContent className="p-0">
+        {/* <CardContent className="p-0">
           <h6>Nội dung: </h6>
           <div>{content}</div>
-        </CardContent>
+        </CardContent> */}
       </Card>
     </Fragment>
   );

@@ -1,6 +1,15 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Box, Card, CardContent, Button, TextField } from "@material-ui/core";
-
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  ButtonGroup,
+  TextField,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllTeacher,
@@ -70,12 +79,38 @@ const TeacherManager = () => {
   }, []);
 
   useEffect(() => {}, [listTeacher]);
+  const [isId, setIsId] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [title, setTitle] = React.useState("Tìm kiếm");
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(anchorEl);
+  };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const [search, setSearch] = useState("");
   const onClickSignIn = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
+    if (isId)
+      dispatch(getAllTeacher(`/teacher/manager?teacherIdFind=${search}`));
+    else dispatch(getAllTeacher(`/teacher/manager?teacherNameFind=${search}`));
+  };
+  const onClickID = (event) => {
+    event.preventDefault();
     dispatch(getAllTeacher(`/teacher/manager?teacherIdFind=${search}`));
+    setIsId(true);
+    setTitle("Tìm theo ID");
+    handleClose();
+  };
+  const onClickName = (event) => {
+    event.preventDefault();
+    setTitle("Tìm theo tên");
+    setIsId(false);
+    dispatch(getAllTeacher(`/teacher/manager?teacherNameFind=${search}`));
+    handleClose();
   };
   return (
     <Fragment>
@@ -91,13 +126,40 @@ const TeacherManager = () => {
                   Thêm mới
                 </Button>
               </Link>
+              <ButtonGroup
+                aria-controls="simple-menu"
+                color="success"
+                aria-haspopup="true"
+                className="mt-2 mb-2 ml-2 mr-0"
+                aria-label="split button"
+              >
+                <Button>{title}</Button>
+                <Button
+                  color="primary"
+                  size="small"
+                  aria-haspopup="true"
+                  onClick={handleClick}
+                >
+                  <ArrowDropDownIcon />
+                </Button>
+              </ButtonGroup>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={onClickID}>Tìm kiếm theo ID</MenuItem>
+                <MenuItem onClick={onClickName}>Tìm kiếm theo tên</MenuItem>
+              </Menu>
               <form
                 onSubmit={onClickSignIn}
                 className="d-none d-sm-inline-block form-inline  ml-14 mb-10 "
               >
-                <div className="p-3">
+                <div className="pr-3 pt-0">
                   <TextField
-                    className="m-2"
+                    className="ml-2"
                     type="text"
                     id="search-id"
                     placeholder="Tìm kiếm"

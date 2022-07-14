@@ -56,7 +56,7 @@ const NotificationComponent = ({
       /> */}
       {
         <>
-          <table className="table table-hover">
+          <table className="table table-striped table-hover text-nowrap mb-0">
             <thead>
               <tr>{tableHead.map((item, index) => renderHead(item, index))}</tr>
             </thead>
@@ -78,7 +78,11 @@ const NotificationComponent = ({
                     </td>
                     <td>
                       {item.idExtracurricularActivities !== null ? (
-                        <Link to={"extra/" + item.idExtracurricularActivities}>
+                        <Link
+                          to={
+                            "/admin/extra/" + item.idExtracurricularActivities
+                          }
+                        >
                           <Button
                             className="m-2 text-info"
                             variant="outlined"
@@ -116,6 +120,11 @@ const NotificationComponent = ({
               })}
             </tbody>
           </table>
+          <CardContent className="p-3">
+            <h6>Nội dung: </h6>
+            <div>{content}</div>
+          </CardContent>
+          <br />
           <PaginationItem
             pagination={pagination}
             prevPage={prevPage}

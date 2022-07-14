@@ -62,7 +62,7 @@ const ClassManager = () => {
         "Bạn có muốn làm mới lại giáo viên chủ nhiệm trong lớp học ?"
       )
     ) {
-      dispatch(resetTeacherOfClass());
+      dispatch(resetTeacherOfClass(""));
     }
   };
   useEffect(() => {
@@ -73,7 +73,7 @@ const ClassManager = () => {
   const [search, setSearch] = useState("");
   const onClickSignIn = (event) => {
     event.preventDefault();
-    dispatch(getClassBySearch(search));
+    dispatch(getClassBySearch(`/class/admin?`));
   };
   return (
     <Fragment>

@@ -47,7 +47,7 @@ const StudentForm = () => {
   };
   useEffect(() => {
     dispatch(getAllSchool("/school/manager"));
-    dispatch(getAllFamily("/family"));
+    dispatch(getAllFamily("/family/manager"));
   }, [dispatch]);
 
   useEffect(() => {

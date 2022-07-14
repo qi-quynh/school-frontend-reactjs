@@ -21,6 +21,8 @@ export const getAllMark = (url) => async (dispatch) => {
     if (data.status === "OK") {
       console.log("thành công");
       dispatch(fetchMarkSuccess(data.data));
+    } else {
+      dispatch(fetchMarkFail(data.message));
     }
 
     console.log(data);

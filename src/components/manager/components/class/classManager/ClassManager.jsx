@@ -1,5 +1,14 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Box, Card, CardContent, Button, TextField } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  TextField,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
+
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -11,11 +20,14 @@ import {
 import Table from "../../../../table/Table";
 import ClassComponent from "./ClassComponent";
 import { Route } from "react-router";
+import ListSchool from "./../../../../school/listSchool/ListSchool";
+import { getAllSchool } from "../../../../../services/school-service";
 
 const ClassManager = () => {
   const dispatch = useDispatch();
   const listClass = useSelector((state) => state.class.listClass);
-  console.log(listClass);
+  const listSchool = useSelector((state) => state.school.listSchool);
+  const [schoolId, setSchoolId] = useState();
   const header = [
     "STT",
     "ID",
@@ -23,6 +35,7 @@ const ClassManager = () => {
     "Sỉ số",
     "Trường",
     "Giáo viên chủ nhiệm",
+    "Mã giáo viên",
     "",
   ];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
@@ -78,6 +91,7 @@ const ClassManager = () => {
   };
   useEffect(() => {
     dispatch(getAllClass("/class/manager"));
+    dispatch(getAllSchool("/school/manager"));
   }, [dispatch]);
 
   useEffect(() => {}, [listClass]);
@@ -87,6 +101,21 @@ const ClassManager = () => {
     setSearch(event.target.value);
     dispatch(getClassBySearch(search));
   };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(anchorEl);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleSchool = (val) => {
+    console.log(val);
+    handleClose();
+    handleReset();
+  };
+
   return (
     <Fragment>
       <Card className="card-box mb-4">
@@ -100,14 +129,32 @@ const ClassManager = () => {
                 Thêm mới
               </Button>
             </Link>
+
             <Button
+              aria-controls="simple-menu"
+              color="secondary"
+              variant="outlined"
+              aria-haspopup="true"
               className="m-2"
-              variant="contained"
-              color="default"
-              onClick={() => handleReset()}
+              onClick={handleClick}
             >
-              Làm mới GVCN
+              Làm mới giáo viên chủ nhiệm
             </Button>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {listSchool != null
+                ? listSchool.map((item) => (
+                    <MenuItem onClick={(item) => handleSchool(item)}>
+                      {item.name}
+                    </MenuItem>
+                  ))
+                : null}
+            </Menu>
             <form
               onSubmit={onClickSignIn}
               className="d-none d-sm-inline-block form-inline mb-10 "

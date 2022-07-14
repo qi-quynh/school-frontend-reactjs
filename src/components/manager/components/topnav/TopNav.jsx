@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Dropdown from "../../../../dropdown/Dropdown";
 
-import user_image from "../../../../assets/images/logo.png";
+import user_image from "../../../../assets/images/user.png";
 
 //import user_menu_admin from '../../../../assets/JsonData/user_menu_admin.json'
 
@@ -58,7 +58,7 @@ const TopNav = () => {
   return (
     <div className="topnav">
       <div className="welcome-info"></div>
-
+      <h3>Quản Lý Hệ Thống Trường Liên Cấp</h3>
       <div className="topnav__right">
         <div className="topnav__right-item">
           <Dropdown

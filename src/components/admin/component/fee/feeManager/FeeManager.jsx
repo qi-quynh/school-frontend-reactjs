@@ -89,11 +89,7 @@ const FeeManager = () => {
                 Thêm theo khối
               </Button>
             </Link>
-            <Link to="fee/add">
-              <Button className="m-2" variant="contained" color="default">
-                Thêm theo học sinh
-              </Button>
-            </Link>
+            
             <form
               onSubmit={onClickSignIn}
               className="d-none d-sm-inline-block form-inline mb-13 "

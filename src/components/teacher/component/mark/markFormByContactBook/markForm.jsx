@@ -52,10 +52,10 @@ const MarkForm = () => {
   }, [dispatch, id]);
 
   useEffect(() => {
-    const loadMarkEdit = async () => {
-      await dispatch(resetMark());
+    const loadMarkEdit = () => {
+      dispatch(resetMark());
       if (id !== -1) {
-        await dispatch(getMarkById(`/mark-student/teacher/${id}`));
+        dispatch(getMarkById(`/mark-student/teacher/${id}`));
 
         setTitle("Thông tin sổ liên lạc ");
       }
@@ -67,7 +67,7 @@ const MarkForm = () => {
   }, [dispatch, id]);
 
   const handleBack = () => {
-    history.push("/teacher/mark");
+    history.goBack();
   };
 
   const handleSubmit = (values) => {
@@ -162,15 +162,19 @@ const MarkForm = () => {
                 type="text"
                 readonly=""
               />
-              <SelectField3 label="Môn học*" name="subjectId">
-                {listSubject.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-                /
-              </SelectField3>
-              <TextField3 label="Điểm*" name="markStudentMark" type="number" />
+
+              <TextField3
+                label="Môn học"
+                name="subjectName"
+                type="text"
+                readonly=""
+              />
+              <TextField3
+                label="Điểm*"
+                name="markStudentMark"
+                step="0.01"
+                type="number"
+              />
             </div>
 
             <div className="row text-center ">

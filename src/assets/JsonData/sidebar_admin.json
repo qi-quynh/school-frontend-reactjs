@@ -1,6 +1,6 @@
 [
   {
-    "display_name": "Dashboard",
+    "display_name": "Thông báo",
     "route": "/admin",
     "icon": "bx bx-category-alt"
   },
@@ -54,11 +54,7 @@
     "route": "/admin/fee",
     "icon": "bx bx-user-pin"
   },
-  {
-    "display_name": "Thông báo",
-    "route": "/admin/notification",
-    "icon": "bx bx-user-pin"
-  },
+
   {
     "display_name": "Ngoại khóa",
     "route": "/admin/extra",

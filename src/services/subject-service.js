@@ -50,7 +50,7 @@ export const addSubject = (params, history) => async (dispatch) => {
   console.log(params);
   try {
     const { data } = await requestService.post(`/subject`, params, true);
-    if (data.status == "OK") {
+    if (data.status === "OK") {
       console.log("thành công");
       dispatch(addSubjectSuccess(data.data));
       history.push("/admin/class");

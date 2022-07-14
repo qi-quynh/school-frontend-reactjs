@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Dropdown from "../../../../dropdown/Dropdown";
 
-import user_image from "../../../../assets/images/logo.png";
+import user_image from "../../../../assets/images/useseven.jpg";
 
 //import user_menu_admin from '../../../../assets/JsonData/user_menu_admin.json'
 
@@ -60,8 +60,8 @@ var Topnav = () => {
   return (
     <div className="topnav">
       <div className="welcome-info"></div>
-
-      <div className="topnav__right">
+      <h3>Quý Phụ Huynh Hệ Thống Trường Liên Cấp</h3>
+      <div lassName="topnav__right">
         <div className="topnav__right-item">
           <Dropdown
             customToggle={() => renderUserToggle(curr_user)}

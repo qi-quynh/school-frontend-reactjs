@@ -72,17 +72,20 @@ const FamilyManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            <Route
-              exact
-              component={() => (
-                <FamilyComponent
-                  data={listFamily}
-                  itemsPerPage={itemsPerPage}
-                  // searchByData={searchByData}
-                  tableHead={header}
-                />
-              )}
-            />
+            {listFamily != null ? (
+              <Route
+                exact
+                component={() => (
+                  <FamilyComponent
+                    data={listFamily}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={header}
+                  />
+                )}
+              />
+            ) : null}
+
             {/* </div> */}
           </div>
         </CardContent>

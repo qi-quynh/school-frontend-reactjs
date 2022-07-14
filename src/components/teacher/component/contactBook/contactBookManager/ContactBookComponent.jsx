@@ -46,7 +46,7 @@ const ContactBookComponent = ({
       /> */}
       {
         <>
-          <table className="table table-hover">
+          <table className="table table-striped table-hover text-nowrap mb-0">
             <thead>
               <tr>{tableHead.map((item, index) => renderHead(item, index))}</tr>
             </thead>
@@ -63,16 +63,9 @@ const ContactBookComponent = ({
                     <td>{item.yearName}</td>
                     <td>{item.mark}</td>
                     <td>
-                      <Link to={"/teacher/mark/add-by-contact-book/" + item.id}>
-                        <Button
-                          className="m-2 text-warning"
-                          variant="outlined"
-                          color="default"
-                        >
-                          Nhập điểm
-                        </Button>
-                      </Link>
-                      <Link to={"list-mark/" + item.id}>
+                      <Link
+                        to={"/teacher/list-mark-by-contact-book/" + item.id}
+                      >
                         <Button
                           variant="outlined"
                           color="default"
@@ -87,6 +80,7 @@ const ContactBookComponent = ({
               })}
             </tbody>
           </table>
+          <br />
           <PaginationItem
             pagination={pagination}
             prevPage={prevPage}

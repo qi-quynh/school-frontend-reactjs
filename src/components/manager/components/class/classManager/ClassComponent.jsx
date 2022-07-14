@@ -66,10 +66,11 @@ const ClassComponent = ({
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{item.id}</td>
-                    <td>{item.name}</td>
+                    <td className="pl-4">{item.name}</td>
                     <td>{item.total}</td>
                     <td>{item.schoolName}</td>
                     <td>{item.teacherName}</td>
+                    <td>{item.teacherId}</td>
                     <td>
                       <Link to={"class/" + item.id}>
                         <Button
@@ -103,12 +104,14 @@ const ClassComponent = ({
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

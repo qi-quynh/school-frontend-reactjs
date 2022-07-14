@@ -110,11 +110,7 @@ export const updateClass = (url, params, history) => async (dispatch) => {
 
 export const resetTeacherOfClass = (url) => async (dispatch) => {
   try {
-    const { data } = await requestService.put(
-      `/class/resetTeacher`,
-      null,
-      true
-    );
+    const { data } = await requestService.put(url, null, true);
     console.log(data);
 
     if (data.status === "OK") {

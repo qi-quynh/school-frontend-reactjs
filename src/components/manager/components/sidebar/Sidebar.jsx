@@ -2,8 +2,6 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import "./sidebar.css";
-
 import logo from "../../../../assets/images/logo.png";
 
 import sidebar_manager from "../../../../assets/JsonData/sidebar_manager.json";
@@ -22,8 +20,6 @@ const SidebarItem = (props) => {
 
 var SidebarManager = (props) => {
   var items = sidebar_manager;
-  console.log("SiderBar Manager");
-  console.log(items);
   const activeItem = items.findIndex(
     (item) => item.route === props.location.pathname
   );

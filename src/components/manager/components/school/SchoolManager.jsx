@@ -58,8 +58,8 @@ const SchoolManager = () => {
     <Fragment>
       <Card className="card-box mb-4">
         {/* <div className="card-table"> */}
-        <div className="card-header">
-          <div className="card-header--title">
+        <div className="card-header text-center">
+          <div className="card-header--title ">
             <h4>Quản lý trường học</h4>
           </div>
 

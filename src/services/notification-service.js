@@ -12,6 +12,8 @@ import {
   updateNotificationFail,
   deleteNotificationSuccess,
   deleteNotificationFail,
+  fetchNotificationRequestSuccess,
+  fetchNotificationRequestFail,
 } from "../actions/notification-actions";
 
 export const getAllNotification = (url) => async (dispatch) => {
@@ -20,6 +22,23 @@ export const getAllNotification = (url) => async (dispatch) => {
     if (data.status === "OK") {
       console.log("thành công");
       dispatch(fetchNotificationSuccess(data.data));
+    } else {
+      dispatch(fetchNotificationFail("Không có thông tin"));
+    }
+
+    console.log(data);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+export const getAllNotificationRequest = (url) => async (dispatch) => {
+  try {
+    const { data } = await requestService.get(url, true);
+    if (data.status === "OK") {
+      console.log("thành công");
+      dispatch(fetchNotificationRequestSuccess(data.data));
+    } else {
+      dispatch(fetchNotificationRequestFail("Không có thông tin"));
     }
 
     console.log(data);
@@ -57,7 +76,7 @@ export const addNotification = (url, params, history) => async (dispatch) => {
     console.log(data);
     if (data.status === "OK") {
       console.log("thành công");
-      dispatch(addNotificationSuccess(data.data));
+      //dispatch(addNotificationSuccess(data.data));
       history.goBack();
     } else {
       console.log("thất bại");

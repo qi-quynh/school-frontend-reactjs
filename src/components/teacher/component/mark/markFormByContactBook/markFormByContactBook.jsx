@@ -70,7 +70,7 @@ const MarkFormByContactBook = () => {
     param.contactBookId = id === -1 ? values.contactBookId : id;
 
     params.push(param);
-    dispatch(addMark('/mark-student/teacher',params, history));
+    dispatch(addMark("/mark-student/teacher", params, history));
     console.log("add");
     // if(id === -1){
     //     params.contactBookId = id;
@@ -137,7 +137,7 @@ const MarkFormByContactBook = () => {
                 ))}
                 /
               </SelectField>
-              <TextField label="Điểm" name="mark" type="text" />
+              <TextField label="Điểm" step="0.01" name="mark" type="number" />
             </div>
             <div className="row text-center ">
               <div className="col-md-6">

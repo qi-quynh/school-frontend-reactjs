@@ -10,11 +10,16 @@ import Profile from "../components/student/component/profile/Profile";
 import ChangePassword from "../components/student/component/changePassword/ChangePassword";
 import Fee from "../components/student/component/fee/Fee";
 import NotificationForm from "../components/student/component/notification/notificationForm/NotificationForm";
+import MarkManagerByContactBook from "../components/student/component/mark/markManagerByContactBook/MarkManagerByContactBook";
 const StudentRoutes = () => {
   return (
     <Switch>
       <Route path="/student" exact component={Notification} />
       <Route path="/student/mark" exact component={MarkManager} />
+      <Route
+        path="/student/mark-by-contact-book/:id"
+        component={MarkManagerByContactBook}
+      />
 
       <Route path="/student/contactBook" exact component={ContactBook} />
       <Route path="/student/logout" component={Logout} />

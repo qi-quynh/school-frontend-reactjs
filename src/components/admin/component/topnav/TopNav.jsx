@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Dropdown from "../../../../dropdown/Dropdown";
 
-import user_image from "../../../../assets/images/logo.png";
+import user_image from "../../../../assets/images/useseven.jpg";
 
 //import user_menu_admin from '../../../../assets/JsonData/user_menu_admin.json'
 
@@ -58,7 +58,7 @@ var Topnav = () => {
     <div className="topnav">
       <div className="welcome-info"></div>
       <div className="topnav__right-user__name">
-        {localStorage.getItem("schoolName")}
+        <h3>{localStorage.getItem("schoolName")}</h3>
       </div>
       <div className="topnav__right">
         <div className="topnav__right-item">

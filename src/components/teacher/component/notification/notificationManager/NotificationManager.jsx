@@ -4,11 +4,15 @@ import { Box, Card, CardContent, Button, ButtonGroup } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllNotification,
+  getAllNotificationRequest,
   deleteNotification,
 } from "../../../../../services/notification-service";
 
 import Table from "../../../../table/Table";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import TeacherComponent from "./../../../../admin/component/teacher/teacherManager/TeacherComponent";
+import NotificationComponent from "./NotificationComponet";
+import moment from "moment";
 
 const NotificationManager = () => {
   const dispatch = useDispatch();
@@ -21,9 +25,10 @@ const NotificationManager = () => {
 
     "Tiêu đề",
     "Phạm vi",
-    "Đối tượng",
+    "Ngày tạo",
+    "Người nhận",
     "Trạng thái",
-    "Ngoại khóa",
+
     "",
   ];
   const listObject = [
@@ -35,6 +40,7 @@ const NotificationManager = () => {
     "Giáo viên & Học sinh",
     "Quản lý trường và giáo viên",
   ];
+
   const [content, setContent] = useState();
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
@@ -42,28 +48,13 @@ const NotificationManager = () => {
       <td>{index + 1}</td>
       <td>{item.titleNotification}</td>
       <td>{item.schoolId}</td>
-      <td>{listObject[item.object]}</td>
+      <td>{item.object}</td>
       <td>
         {item.statusNotification === "APPROVE"
           ? "Duyệt"
           : item.statusNotification === "CANCEL"
           ? "Hủy"
           : "Chờ"}
-      </td>
-      <td>
-        {item.idExtracurricularActivities !== null ? (
-          <Link to={"extra/" + item.idExtracurricularActivities}>
-            <Button
-              className="m-2 text-secondary"
-              variant="outlined"
-              color="default"
-            >
-              NK
-            </Button>
-          </Link>
-        ) : (
-          <div></div>
-        )}
       </td>
 
       <td>
@@ -84,60 +75,48 @@ const NotificationManager = () => {
       dispatch(deleteNotification(item.id));
     }
   };
+  const itemsPerPage = 10;
 
   const onClick = (event) => {
     event.preventDefault();
     dispatch(getAllNotification("/notification/teacher"));
   };
-  const onClickRequest = (event) => {
-    event.preventDefault();
-    dispatch(getAllNotification("/notification/teacher-request"));
-  };
+
   useEffect(() => {
     dispatch(getAllNotification("/notification/teacher"));
   }, [dispatch]);
 
   useEffect(() => {}, [listNotification]);
-
+  console.log(listNotification);
   return (
     <Fragment>
       <Card className="card-box mb-4">
         <div className="card-header">
-          <div className="card-header--title">
-            <h4>Quản lý thông báo</h4>
+          <div className="card-header--title text-center">
+            <h4>Thông Báo Đến</h4>
           </div>
-          <Box className="card-header--actions">
-            <ButtonGroup className="m-2">
-              <Button color="primary" onClick={onClick}>
-                Đến
-              </Button>
-
-              <Button color="primary" onClick={onClickRequest}>
-                Gửi
-              </Button>
-            </ButtonGroup>
-            <Link to="/teacher/notification/add">
-              <Button className="m-2" variant="contained" color="primary">
-                Tạo
-              </Button>
-            </Link>
-          </Box>
         </div>
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            <Table
-              headData={notificationHeader}
-              renderHead={(item, index) => renderHead(item, index)}
-              bodyData={listNotification}
-              renderBody={(item, index) => renderBody(item, index)}
-            />
+
+            {listNotification == null || listNotification.length === 0 ? (
+              <div className="p-4 text-center">Không có thông báo đến</div>
+            ) : (
+              <Route
+                exact
+                component={() => (
+                  <NotificationComponent
+                    data={listNotification}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={notificationHeader}
+                  />
+                )}
+              />
+            )}
             {/* </div> */}
           </div>
-        </CardContent>
-        <CardContent className="p-0">
-          <h6>Nội dung: </h6>
-          <div>{content}</div>
         </CardContent>
       </Card>
     </Fragment>

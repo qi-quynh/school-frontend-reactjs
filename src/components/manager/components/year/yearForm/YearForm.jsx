@@ -16,7 +16,7 @@ const YearForm = () => {
   console.log(id);
 
   if (id == null) id = -1;
-  const [title, setTitle] = useState("Thông tin trường mới");
+  const [title, setTitle] = useState("Thông tin năm học trường");
   const history = useHistory();
   const dispatch = useDispatch();
   const year = useSelector((state) => state.year.year);

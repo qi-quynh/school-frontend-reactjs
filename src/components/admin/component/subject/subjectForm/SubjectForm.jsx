@@ -13,6 +13,8 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "../../../../formik/TextField";
 import { SelectField } from "../../../../formik/SelectField";
+import { Multiline12Field } from "./../../../../formik/MultilineText12";
+import { MultilineField } from "../../../../formik/MultilineText";
 
 const SubjectForm = () => {
   let { id } = useParams();
@@ -101,11 +103,7 @@ const SubjectForm = () => {
               ) : (
                 <TextField label="Id" name="id" type="text" readonly="" />
               )}
-              <TextField label="Môn học*" name="name" type="text" />
-            </div>
-
-            <div className="row">
-              <TextField label="Thời gian" name="classHour" type="number" />
+              <MultilineField label="Môn học*" name="name" type="text" />
             </div>
 
             <div className="row ">

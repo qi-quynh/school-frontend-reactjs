@@ -1,5 +1,16 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Box, Card, CardContent, Button, TextField } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  CardContent,
+  Button,
+  ButtonGroup,
+  TextField,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
+
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllStudent } from "../../../../../services/student-service";
 import Table from "../../../../table/Table";
@@ -73,12 +84,39 @@ const StudentManager = () => {
   const listStudent = useSelector((state) => state.student.listStudent);
   console.log(listStudent);
   useEffect(() => {}, [listStudent]);
+  const [isId, setIsId] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [title, setTitle] = React.useState("Tìm kiếm");
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    console.log(anchorEl);
+  };
 
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const [search, setSearch] = useState("");
   const onClickSignIn = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
+    if (isId)
+      dispatch(getAllStudent(`/student/manager?studentIdFind=${search}`));
+    else dispatch(getAllStudent(`/student/manager?studentNameFind=${search}`));
+  };
+
+  const onClickID = (event) => {
+    event.preventDefault();
     dispatch(getAllStudent(`/student/manager?studentIdFind=${search}`));
+    setIsId(true);
+    setTitle("Tìm theo ID");
+    handleClose();
+  };
+  const onClickName = (event) => {
+    event.preventDefault();
+    setTitle("Tìm theo tên");
+    setIsId(false);
+    dispatch(getAllStudent(`/student/manager?studentNameFind=${search}`));
+    handleClose();
   };
   return (
     <Fragment>
@@ -103,24 +141,46 @@ const StudentManager = () => {
                 Phụ huynh học sinh
               </Button>
             </Link>
+            <ButtonGroup
+              aria-controls="simple-menu"
+              color="success"
+              aria-haspopup="true"
+              className="mt-2 mb-2 ml-2 mr-0"
+              aria-label="split button"
+            >
+              <Button>{title}</Button>
+              <Button
+                color="primary"
+                size="small"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                <ArrowDropDownIcon />
+              </Button>
+            </ButtonGroup>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={onClickID}>Tìm kiếm theo ID</MenuItem>
+              <MenuItem onClick={onClickName}>Tìm kiếm theo tên</MenuItem>
+            </Menu>
             <form
               onSubmit={onClickSignIn}
-              className="d-none d-sm-inline-block form-inline  ml-10 mb-10 "
+              className="d-none d-sm-inline-block form-inline  ml-14 mb-10 "
             >
-              <div className="p-3">
+              <div className="pr-3 pt-0">
                 <TextField
-                  className="m-2"
+                  className="ml-2"
                   type="text"
                   id="search-id"
                   placeholder="Tìm kiếm"
                   name="search"
                   onChange={(event) => onClickSignIn(event)}
                 />
-                {/* <div className="">
-                    <button className="btn btn-primary" type="submit">
-                      <i className="fas fa-search fa-sm"></i>
-                    </button>
-                  </div> */}
               </div>
             </form>
           </Box>
@@ -128,7 +188,9 @@ const StudentManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            {listStudent != null ? (
+            {listStudent == null || listStudent.length === 0 ? (
+              <div className="p-3">Không có dữ liệu học sinh</div>
+            ) : (
               <Route
                 exact
                 component={() => (
@@ -140,8 +202,6 @@ const StudentManager = () => {
                   />
                 )}
               />
-            ) : (
-              <div>Chưa có thông tin</div>
             )}
 
             {/* </div> */}

@@ -77,7 +77,7 @@ const ClassForm = () => {
     console.log(values);
     dispatch(getAllGrade(`/grade/manager?schoolId=${values}`));
     dispatch(getAllTeacher(`/teacher/manager?schoolId=${values}`));
-    setSchoolId(values.schoolId);
+    setSchoolId(values);
   };
   const handleBack = () => {
     history.push("/manager/class");
@@ -89,7 +89,6 @@ const ClassForm = () => {
     params.gradeId = values.gradeId;
     params.teacherId = values.teacherId;
 
-    
     console.log(params);
     if (id === -1) {
       params.id = null;

@@ -88,26 +88,20 @@ const ClassComponent = ({
                           Học sinh
                         </Button>
                       </Link>
-                      <Button
-                        variant="outlined"
-                        color="default"
-                        className="m-2 text-danger"
-                        onClick={() => handleDelete(item)}
-                      >
-                        Xóa
-                      </Button>
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

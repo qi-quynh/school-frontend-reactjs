@@ -10,3 +10,5 @@ export const UPDATE_FEE = "UPDATE_FEE";
 export const UPDATE_FEE_FAIL = "UPDATE_FEE_FAIL";
 export const DELETE_FEE = "DELETE_FEE";
 export const DELETE_FEE_FAIL = "DELETE_FEE_FAIL";
+export const FETCH_ALL_FEE_DEBT = "FETCH_ALL_FEE_DEBT";
+export const FETCH_ALL_FEE_DEBT_FAIL = "FETCH_ALL_FEE_DEBT_FAIL";

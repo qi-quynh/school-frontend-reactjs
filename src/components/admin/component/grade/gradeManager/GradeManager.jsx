@@ -39,14 +39,14 @@ const GradeManager = () => {
             Sửa
           </Button>
         </Link>
-        <Button
+        {/* <Button
           className="m-2 text-danger"
           variant="outlined"
           color="default"
           onClick={() => handleDelete(item)}
         >
           Xóa
-        </Button>
+        </Button> */}
       </td>
     </tr>
   );
@@ -77,7 +77,7 @@ const GradeManager = () => {
       <Card className="card-box mb-4">
         <div className="card-header">
           <div className="card-header--title">
-            <h4>Quản lý khối - Trường {teacher.schoolName} </h4>
+            <h4>Quản lý khối học </h4>
           </div>
           <Box className="card-header--actions">
             <Link to="grade/add">

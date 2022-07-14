@@ -51,7 +51,8 @@ const FamilyComponent = ({
                     <td>{index + 1}</td>
                     <td>{item.cmnd}</td>
                     <td>{item.name}</td>
-                    <td>{item.relationShip}</td>
+                    <td>{item.phone}</td>
+                    <td>{item.email}</td>
                     <td>
                       <Link to={"family/" + item.cmnd}>
                         <Button
@@ -74,12 +75,14 @@ const FamilyComponent = ({
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

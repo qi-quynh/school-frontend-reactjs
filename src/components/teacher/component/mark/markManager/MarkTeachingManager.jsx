@@ -11,6 +11,7 @@ import { Route } from "react-router";
 import { useParams } from "react-router";
 import MarkComponent from "./MarkComponent";
 import { getClassById } from "../../../../../services/class-service";
+import MarkTeachingComponent from "./MarkTeachingComponent";
 const MarkTeachingManager = () => {
   let { id } = useParams();
   if (id == null) id = -1;
@@ -32,11 +33,11 @@ const MarkTeachingManager = () => {
   ];
 
   useEffect(() => {
-    const loadGradeEdit = async () => {
+    const loadGradeEdit = () => {
       if (id === -1) {
         dispatch(getAllMark("/mark-student/teacher"));
       } else {
-        dispatch(getAllMark(`/mark-student/teacher?classId=${id}`));
+        dispatch(getAllMark(`/mark-student/teacher?courceId=${id}`));
       }
     };
     loadGradeEdit();
@@ -114,18 +115,21 @@ const MarkTeachingManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            <Route
-              exact
-              component={() => (
-                <MarkComponent
-                  data={listMark}
-                  itemsPerPage={itemsPerPage}
-                  // searchByData={searchByData}
-                  tableHead={header}
-                />
-              )}
-            />
-            {/* </div> */}
+            {listMark == null || listMark.length === 0 ? (
+              <div className="p-4">Không có thông tin về điểm học sinh</div>
+            ) : (
+              <Route
+                exact
+                component={() => (
+                  <MarkTeachingComponent
+                    data={listMark}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={header}
+                  />
+                )}
+              />
+            )}
           </div>
         </CardContent>
       </Card>

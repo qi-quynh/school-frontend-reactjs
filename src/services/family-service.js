@@ -24,9 +24,9 @@ export const getAllFamily = (url) => async (dispatch) => {
   }
 };
 
-export const getFamilyById = (id) => async (dispatch) => {
+export const getFamilyById = (url) => async (dispatch) => {
   try {
-    const { data } = await requestService.get(`/family?id=${id}`, true);
+    const { data } = await requestService.get(url, true);
     //console.log(data);
 
     if (data.status === "OK") {
@@ -51,14 +51,14 @@ export const resetFamily = () => async (dispatch) => {
 
 export const addFamily = (params, history) => async (dispatch) => {
   try {
-    const { data } = await requestService.post(`/family`, params, true);
+    const { data } = await requestService.post(`/family/manager`, params, true);
 
     console.log(data);
 
     if (data.status === "OK") {
       console.log("thành công");
-      dispatch(addFamilySuccess(data.data));
-      history.push("/admin/family");
+
+      history.goBack();
     } else {
       console.log(data.message);
       dispatch(updateFamilyFail(data.message));
@@ -74,7 +74,7 @@ export const updateFamily = (params, history) => async (dispatch) => {
   try {
     const { data } = await requestService.put(`/family`, params, true);
     console.log(data);
-    dispatch(updateFamilySuccess(data.data));
+
     history.goBack();
   } catch (error) {
     dispatch(updateFamilyFail(error.message));

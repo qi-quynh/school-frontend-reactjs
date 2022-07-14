@@ -7,12 +7,14 @@ import {
   deleteSubject,
 } from "../../../../../services/subject-service";
 import Table from "../../../../table/Table";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { Formik, Form } from "formik";
+import SubjectComponent from "../../../../admin/component/subject/subjectManager/SubjectComponent";
 const SubjectManager = () => {
   const dispatch = useDispatch();
   const listSubject = useSelector((state) => state.subject.listSubject);
   console.log(listSubject);
+  const itemsPerPage = 10;
   const subjectHeader = ["STT", "Mã môn", "Môn học", ""];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
@@ -61,12 +63,19 @@ const SubjectManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             {/* <div className="card-body"> */}
-            <Table
-              headData={subjectHeader}
-              renderHead={(item, index) => renderHead(item, index)}
-              bodyData={listSubject}
-              renderBody={(item, index) => renderBody(item, index)}
-            />
+            {listSubject != null ? (
+              <Route
+                exact
+                component={() => (
+                  <SubjectComponent
+                    data={listSubject}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={subjectHeader}
+                  />
+                )}
+              />
+            ) : null}
             {/* </div> */}
           </div>
         </CardContent>

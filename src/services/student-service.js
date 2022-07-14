@@ -22,7 +22,7 @@ export const getAllStudent = (url) => async (dispatch) => {
       dispatch(fetchStudentSuccess(data.data));
       console.log(data);
     } else {
-      console.log("thất bại");
+      dispatch(fetchStudentFail("Không có dữ liệu"));
     }
   } catch (error) {
     dispatch(fetchStudentFail(error.message));

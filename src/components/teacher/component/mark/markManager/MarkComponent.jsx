@@ -29,21 +29,6 @@ const MarkComponent = ({
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   return (
     <>
-      {/* {modalActive ? (
-        <ModalDelete
-          object={courseInfo}
-          deleteHandler={deleteHandler}
-          setModalActive={setModalActive}
-          messege={messege}
-        /> */}
-      {/* ) : null} */}
-      {/* <br /> */}
-      {/* <SearchForm
-        data={data}
-        searchByData={searchByData}
-        setFilteredData={setFilteredData}
-        setSearching={setSearching}
-      /> */}
       {
         <>
           <table className="table table-hover">
@@ -55,7 +40,7 @@ const MarkComponent = ({
                 return (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{item.subjectName}</td>
+                    <td>{item.courceName}</td>
                     <td>{item.studentId}</td>
                     <td>{item.studentName}</td>
                     <td>{item.className}</td>
@@ -64,18 +49,7 @@ const MarkComponent = ({
                     </td>
                     <td>{item.markStudentMark}</td>
 
-                    <td>
-                      <Link to={"/teacher/mark/" + item.id}>
-                        <Button
-                          className="m-2 text-warning"
-                          variant="outlined"
-                          color="default"
-                        >
-                          Sửa
-                        </Button>
-                      </Link>
-                      {/* <button className="btn btn-danger mr-10" onClick={() => handleDelete(item)}>Xóa</button> */}
-                    </td>
+                    
                   </tr>
                 );
               })}

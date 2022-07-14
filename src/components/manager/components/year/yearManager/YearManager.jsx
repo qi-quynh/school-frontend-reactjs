@@ -4,18 +4,20 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllYear } from "../../../../../services/year-service";
 import Table from "../../../../table/Table";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import YearComponent from "./YearComponent";
 
 const YearManager = () => {
   const dispatch = useDispatch();
   const listYear = useSelector((state) => state.year.listYear);
   console.log(listYear);
-  const yearHeader = ["STT", "ID", "Năm học"];
+  const itemsPerPage = 10;
+  const yearHeader = ["STT", "Năm học"];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
-      <td>{item.id}</td>
+
       <td>{item.name}</td>
       {/* <td>
                 <Link to={'schoolYear/' + item.id}>
@@ -49,12 +51,19 @@ const YearManager = () => {
         <CardContent className="p-0">
           <div className="table-responsive">
             <div className="card-body">
-              <Table
-                headData={yearHeader}
-                renderHead={(item, index) => renderHead(item, index)}
-                bodyData={listYear}
-                renderBody={(item, index) => renderBody(item, index)}
-              />
+              {listYear != null ? (
+                <Route
+                  exact
+                  component={() => (
+                    <YearComponent
+                      data={listYear}
+                      itemsPerPage={itemsPerPage}
+                      // searchByData={searchByData}
+                      tableHead={yearHeader}
+                    />
+                  )}
+                />
+              ) : null}
             </div>
           </div>
         </CardContent>

@@ -1,6 +1,6 @@
 .sidebar {
   min-width: var(--sidebar-width);
-  height: 100vh;
+  height: 40vh;
   position: fixed;
   left: 0;
   top: 0;
@@ -11,12 +11,12 @@
 
 .sidebar-student {
   min-width: var(--sidebar-width);
-  height: 100vh;
+  height: 40vh;
   position: fixed;
   left: 0;
   top: 0;
   color: #e3d2df;
-  background-color: #27ab8a;
+  background-color: #3d4977;
   box-shadow: var(--box-shadow);
 }
 
@@ -59,6 +59,6 @@
 
 .sidebar__item-inner.active {
   border-radius: var(--border-radius);
-  background-image: linear-gradient(to left, #274bab, var(--second-color));
+  background-image: linear-gradient(to left, #ffffff, var(--second-color));
   color: var(--txt-white);
 }

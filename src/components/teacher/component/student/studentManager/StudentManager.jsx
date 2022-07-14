@@ -8,6 +8,8 @@ import {
 import Table from "../../../../table/Table";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import StudentComponent from "./StudentComponent";
 
 const StudentManager = () => {
   // let  id  = useParams();
@@ -25,7 +27,7 @@ const StudentManager = () => {
     "Số điện thoại",
     "",
   ];
-
+  const itemsPerPage = 10;
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
     <tr key={index}>
@@ -55,7 +57,7 @@ const StudentManager = () => {
     </tr>
   );
   useEffect(() => {
-    dispatch(getAllStudent("/student/teacher"));
+    dispatch(getAllStudent("/student/teacher-homeroom"));
   }, [dispatch]);
 
   const listStudent = useSelector((state) => state.student.listStudent);
@@ -66,14 +68,16 @@ const StudentManager = () => {
   const onClickSignIn = (event) => {
     event.preventDefault();
     setSearch(event.target.value);
-    dispatch(getAllStudent(`/student/teacher?studentIdFind=${search}`));
+    dispatch(
+      getAllStudent(`/student/teacher-homeroom?studentIdFind=${search}`)
+    );
   };
   return (
     <Fragment>
       <Card className="card-box mb-4">
         <div className="card-header">
           <div className="card-header--title">
-            <h4>Quản lý học sinh</h4>
+            <h4>Quản lý học sinh chủ nhiệm</h4>
           </div>
           <Box className="card-header--actions">
             <form
@@ -85,7 +89,7 @@ const StudentManager = () => {
                   className="m-2"
                   type="text"
                   id="search-id"
-                  placeholder="Tìm kiếm"
+                  placeholder="Tìm kiếm theo ID"
                   name="search"
                   onChange={(event) => onClickSignIn(event)}
                 />
@@ -95,14 +99,19 @@ const StudentManager = () => {
         </div>
         <CardContent className="p-0">
           <div className="table-responsive">
-            {/* <div className="card-body"> */}
-            <Table
-              headData={studentHeader}
-              renderHead={(item, index) => renderHead(item, index)}
-              bodyData={listStudent}
-              renderBody={(item, index) => renderBody(item, index)}
-            />
-            {/* </div> */}
+            {listStudent != null ? (
+              <Route
+                exact
+                component={() => (
+                  <StudentComponent
+                    data={listStudent}
+                    itemsPerPage={itemsPerPage}
+                    // searchByData={searchByData}
+                    tableHead={studentHeader}
+                  />
+                )}
+              />
+            ) : null}
           </div>
         </CardContent>
       </Card>

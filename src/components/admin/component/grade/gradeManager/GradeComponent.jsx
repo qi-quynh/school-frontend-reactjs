@@ -83,26 +83,28 @@ const GradeComponent = ({
                           Sửa
                         </Button>
                       </Link>
-                      <Button
+                      {/* <Button
                         className="m-2 text-danger"
                         variant="outlined"
                         color="default"
                         onClick={() => handleDelete(item)}
                       >
                         Xóa
-                      </Button>
+                      </Button> */}
                     </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <PaginationItem
-            pagination={pagination}
-            prevPage={prevPage}
-            changePage={changePage}
-            nextPage={nextPage}
-          />
+          <div className="p-2">
+            <PaginationItem
+              pagination={pagination}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
+          </div>
         </>
       }
     </>

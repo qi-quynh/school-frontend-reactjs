@@ -17,7 +17,7 @@ import {
 } from "../../../../../services/contactBook-service";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
-import ContactBookComponent from "../../../../admin/component/contactBook/contactBookManager/ContactBookComponent";
+import ContactBookComponent from "./ContactBookComponent";
 
 const ContactBookManager = () => {
   let { id } = useParams();
@@ -41,9 +41,9 @@ const ContactBookManager = () => {
   console.log(listContactBook);
   const header = [
     "STT",
-    "SLL",
+    "Sổ Liên Lạc",
     "Học sinh",
-    "GVCN",
+    "Giáo Viên Chủ Nhiệm",
     "Lớp",
     "Học kì",
     "Năm học",
@@ -130,45 +130,6 @@ const ContactBookManager = () => {
                       onChange={(event) => onClickSignIn(event)}
                     />
                   </div>
-                </form>
-                <form
-                  onSubmit={onClickSignIn}
-                  className="d-none d-sm-inline-block form-inline mb-10 ml-10"
-                >
-                  <Button
-                    aria-controls="simple-menu"
-                    variant="contained"
-                    color="primary"
-                    aria-haspopup="true"
-                    onClick={handleClick}
-                  >
-                    Học kì
-                  </Button>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Học kỳ I</MenuItem>
-                    <MenuItem onClick={handleClose}>Học kỳ II</MenuItem>
-                  </Menu>
-                  {/* <div className="input-search">
-                      <select id="semester">
-                        {listSemester.map((item) => (
-                          <option key={item.name} value={item.name}>
-                            {item.name}
-                          </option>
-                        ))}
-                      </select>
-
-                      <div className="">
-                        <button className="btn btn-primary" type="submit">
-                          <i className="fas fa-search fa-sm"></i>
-                        </button>
-                      </div>
-                    </div> */}
                 </form>
               </Box>
             </div>

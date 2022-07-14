@@ -20,13 +20,12 @@ const MarkManager = () => {
   console.log(listMark);
   const header = [
     "STT",
-    "Môn học",
+    "Khóa học",
     "ID Học sinh",
     "Họ tên",
     "Lớp",
     "Năm học",
     "Điểm",
-    "",
   ];
 
   useEffect(() => {
@@ -34,7 +33,7 @@ const MarkManager = () => {
       if (id === -1) {
         dispatch(getAllMark("/mark-student/teacher"));
       } else {
-        dispatch(getAllMark(`/mark-student/teacher?contactBookId=${id}`));
+        dispatch(getAllMark(`/mark-student/teacher`));
       }
     };
     loadGradeEdit();
@@ -48,7 +47,7 @@ const MarkManager = () => {
   const renderBody = (item, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
-      <td>{item.subjectName}</td>
+      <td>{item.courceName}</td>
       <td>{item.studentId}</td>
       <td>{item.studentName}</td>
       <td>{item.className}</td>
@@ -81,7 +80,8 @@ const MarkManager = () => {
   const [search, setSearch] = useState("");
   const onClickSignIn = (event) => {
     event.preventDefault();
-    dispatch(getMarkByStudentId(search));
+    setSearch(event.target.value);
+    dispatch(getAllMark(`/mark-student/teacher?studentIdFind=${search}`));
   };
 
   return (
@@ -96,15 +96,6 @@ const MarkManager = () => {
             )}
           </div>
           <Box className="card-header--actions">
-            {id === -1 ? (
-              <Link to="mark/add">
-                <Button className="m-2" variant="contained" color="primary">
-                  Thêm mới
-                </Button>
-              </Link>
-            ) : (
-              <div></div>
-            )}
             <form
               onSubmit={onClickSignIn}
               className=" d-sm-inline-block form-inline  mb-10 ml-10 "

@@ -133,7 +133,7 @@ const MarkForm = () => {
                 </SelectField>
               ) : (
                 <TextField
-                  label="SLL"
+                  label="Sổ Liên Lạc"
                   name="contactBookId"
                   type="text"
                   readonly=""
@@ -152,7 +152,12 @@ const MarkForm = () => {
                     ))}
                 /
               </SelectField>
-              <TextField label="Điểm*" name="markStudentMark" type="text" />
+              <TextField
+                label="Điểm*"
+                step="0.01"
+                name="markStudentMark"
+                type="number"
+              />
             </div>
             <div className="row text-center ">
               <div className="col-md-6">

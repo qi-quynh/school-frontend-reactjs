@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router";
 
 import Dashboard from "../components/admin/component/dashboard/Dashboard";
 
-import SchoolManager from "../components/manager/components/school/SchoolManager";
+import SchoolManager from "../components/manager/components/school/schoolManager/SchoolManager";
 import SchoolForm from "../components/admin/component/school/schoolForm/SchoolForm";
 import Logout from "../components/admin/component/logout/Logout";
 

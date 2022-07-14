@@ -15,7 +15,14 @@ const FamilyManager = () => {
   const listFamily = useSelector((state) => state.family.listFamily);
   console.log(listFamily);
   const itemsPerPage = 10;
-  const header = ["STT", "Số CMND/CCCD", "Họ Tên", ""];
+  const header = [
+    "STT",
+    "Số CMND/CCCD",
+    "Họ Tên",
+    "Số Điện Thoại",
+    "Email",
+    "",
+  ];
   const renderHead = (item, index) => <th key={index}>{item}</th>;
   const renderBody = (item, index) => (
     <tr key={index}>
@@ -33,21 +40,10 @@ const FamilyManager = () => {
             Sửa
           </Button>
         </Link>
-        {/* <button
-          className="btn btn-danger mr-10"
-          onClick={() => handleDelete(item)}
-        >
-          Xóa
-        </button> */}
       </td>
     </tr>
   );
-  const handleDelete = (item) => {
-    if (window.confirm("Bạn có muốn xóa thông tin " + item.id + " ?")) {
-      //eslint-disable-line
-      dispatch(deleteFamily(item.id));
-    }
-  };
+
   useEffect(() => {
     dispatch(getAllFamily("/family/manager"));
   }, [dispatch]);

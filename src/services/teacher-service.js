@@ -15,10 +15,14 @@ import {
 } from "../actions/teacher-actions";
 
 export const getAllTeacher = (url) => async (dispatch) => {
+  console.log(url);
   try {
     const { data } = await requestService.get(url, true);
     if (data.status === "OK") {
       dispatch(fetchTeacherSuccess(data.data));
+    }
+    else{
+      dispatch(fetchTeacherFail("Không có thông tin"));
     }
 
     // console.log(data);

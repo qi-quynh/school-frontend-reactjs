@@ -4,7 +4,7 @@ import { ErrorMessage, useField } from "formik";
 export const MultilineField = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div className="col-md-6">
+    <div className="col-md-12">
       <label htmlFor={field.name}>{label}</label>
       <textarea
         className={`form-control shadow-none  ${

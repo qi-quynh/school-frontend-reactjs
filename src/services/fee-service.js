@@ -12,16 +12,31 @@ import {
   updateFeeFail,
   deleteFeeSuccess,
   deleteFeeFail,
+  fetchFeeDebtSuccess,
+  fetchFeeDebtFail,
 } from "../actions/fee-actions";
 
 export const getAllFee = (url) => async (dispatch) => {
   try {
     const { data } = await requestService.get(url, true);
     if (data.status === "OK") dispatch(fetchFeeSuccess(data.data));
-
+    else dispatch(fetchFeeFail("Không có dữ liệu"));
     console.log(data);
   } catch (error) {
     dispatch(fetchFeeFail(error.message));
+    console.log(error.message);
+  }
+};
+
+export const getAllFeeDebt = (url) => async (dispatch) => {
+  try {
+    const { data } = await requestService.get(url, true);
+    if (data.status === "OK") dispatch(fetchFeeDebtSuccess(data.data));
+    else dispatch(fetchFeeDebtFail("Không có dữ liệu"));
+
+    console.log(data);
+  } catch (error) {
+    dispatch(fetchFeeDebtFail(error.message));
     console.log(error.message);
   }
 };
@@ -60,7 +75,7 @@ export const getFeeBySearch = (search) => async (dispatch) => {
 export const addFee = (url, params, history) => async (dispatch) => {
   console.log(params);
   try {
-    console.log("đang chò");
+    console.log(url);
     const { data } = await requestService.post(url, params, true);
     if (data.status === "OK") {
       //console.log("thành công");
@@ -81,8 +96,8 @@ export const updateFee = (url, params, history) => async (dispatch) => {
   try {
     const { data } = await requestService.put(url, params, true);
     if (data.status === "OK") {
-      console.log("thành công");
-      dispatch(updateFeeSuccess(data));
+      console.log("thành công Học phí ");
+      
       history.goBack();
     } else {
       console.log("thất bại");

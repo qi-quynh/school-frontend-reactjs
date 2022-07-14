@@ -15,22 +15,34 @@ import Logout from "./../components/teacher/component/logout/Logout";
 import NotificationManager from "./../components/teacher/component/notification/notificationManager/NotificationManager";
 import NotificationForm from "./../components/teacher/component/notification/notificationForm/NotificationForm";
 import MarkTeachingManager from "../components/teacher/component/mark/markManager/MarkTeachingManager";
+import NotificationRequestManager from "../components/teacher/component/notification/notificationRquest/NotificationRequestManager";
+import ContactBookManagerByStudent from "./../components/teacher/component/contactBook/contactBookByStudent/ContactBookByStudent";
+import MarkManagerByContactBook from "../components/teacher/component/mark/markManager/MarkManagerByContactBook";
 
 const TeacherRoutes = () => {
   return (
     <Switch>
       <Route path="/teacher" exact component={NotificationManager} />
+      <Route
+        path="/teacher/send"
+        exact
+        component={NotificationRequestManager}
+      />
       <Route path="/teacher/class" exact component={ClassManager} />
       <Route path="/teacher/logout" component={Logout} />
       <Route path="/teacher/student" exact component={StudentManager} />
       <Route path="/teacher/student/:id" component={StudentForm} />
       <Route path="/teacher/contactBook" exact component={ContactBookManager} />
+
       <Route
         path="/teacher/contactBook/addByStudent"
         component={ContactBookForm}
       />
-      <Route path="/teacher/contactBook/:id" component={ContactBookForm} />
-      <Route path="/teacher/mark" exact component={MarkManager} />
+      <Route
+        path="/teacher/contactBook/:id"
+        component={ContactBookManagerByStudent}
+      />
+      <Route path="/teacher/mark" exact component={MarkTeachingManager} />
       <Route
         path="/teacher/mark/add-by-contact-book/:id"
         component={MarkFormByContactBook}
@@ -40,6 +52,10 @@ const TeacherRoutes = () => {
       <Route path="/teacher/mark/:id" component={MarkForm} />
       <Route path="/teacher/mark-class/:id" component={MarkTeachingManager} />
       <Route path="/teacher/list-mark/:id" component={MarkManager} />
+      <Route
+        path="/teacher/list-mark-by-contact-book/:id"
+        component={MarkManagerByContactBook}
+      />
       <Route path="/teacher/profile/:id" component={TeacherForm} />
       <Route path="/teacher/change-password" component={ChangePassword} />
 

@@ -90,7 +90,7 @@ const FeeForm = () => {
     params.semester = values.semester !== "" ? values.semester : "HK I";
 
     params.schoolYear = values.schoolYear !== "" ? values.schoolYear : 1;
-    dispatch(addFee(params, history));
+    dispatch(addFee("/fee/manager", params, history));
     console.log("add");
 
     //handleBack();

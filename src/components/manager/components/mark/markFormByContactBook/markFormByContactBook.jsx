@@ -141,7 +141,7 @@ const MarkFormByContactBook = () => {
                     ))}
                 /
               </SelectField>
-              <TextField label="Điểm" name="mark" type="text" />
+              <TextField label="Điểm" step="0.01" name="mark" type="number" />
             </div>
             <div className="row text-center ">
               <div className="col-md-6">

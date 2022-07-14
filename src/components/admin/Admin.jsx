@@ -8,10 +8,8 @@ import Routes from "../../routes/Routes";
 import LoginPage from "../../pages/LoginPage";
 const Admin = () => {
   let isLogin = useSelector((state) => state.auth.isLogin);
-  console.log("Admin");
+
   useEffect(() => {
-    console.log(isLogin);
-    console.log(localStorage.getItem("isLoggedIn"));
     //var isLogin = localStorage.getItem("isLoggedIn");
   }, []);
   return (

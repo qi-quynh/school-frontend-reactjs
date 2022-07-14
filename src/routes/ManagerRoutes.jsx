@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 
 import Dashboard from "../components/manager/components/dashboard/Dashboard";
-import SchoolManager from "../components/manager/components/school/SchoolManager";
+import SchoolManager from "../components/manager/components/school/schoolManager/SchoolManager";
 import SchoolForm from "../components/manager/components/school/schoolForm/SchoolForm";
 
 import TeacherManager from "../components/manager/components/teacher/teacherManager/TeacherManager";
@@ -80,7 +80,7 @@ const ManagerRoutes = () => {
 
       <Route path="/manager/student/transfer" component={TransferClass} />
       <Route
-        path="manager/list-of-students-by-class/:id"
+        path="/manager/list-of-students-by-class/:id"
         component={StudentManager}
       />
       <Route path="/manager/student/:id" component={StudentForm} />
